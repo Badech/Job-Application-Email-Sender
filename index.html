@@ -430,23 +430,11 @@
                 <h2 class="section-title">Email Configuration</h2>
                 <div class="form-group">
                     <label for="subject">Email Subject</label>
-                    <input type="text" id="subject" value="Candidature – Mailer / Email Marketing Specialist" required>
+                    <input type="text" id="subject" value="" required>
                 </div>
                 <div class="form-group">
                     <label for="emailBody">Email Body</label>
-                    <textarea id="emailBody" required>Madame, Monsieur,
-
-J'ai l'honneur de soumettre ma candidature au poste de Mailer / Email Marketing Specialist au sein de votre entreprise. Bénéficiant d'une expérience approfondie de plus d'un an et demi dans le domaine de l'email marketing, j'ai développé une expertise reconnue dans la conception, la gestion et l'optimisation de campagnes d'envergure, générant des résultats mesurables et significatifs.
-
-Vous trouverez en pièce jointe mon curriculum vitae qui présente en détail mon parcours professionnel ainsi que mes compétences techniques. Je serais honoré de pouvoir échanger avec vous sur la manière dont mon expertise pourrait contribuer au succès de vos initiatives marketing.
-
-Je me tiens à votre entière disposition pour un entretien selon vos disponibilités.
-
-Dans l'attente de votre retour, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
-
-Bader ECH-CHALH
-+212708026571
-Badrechalh1@gmail.com</textarea>
+                    <textarea id="emailBody" required></textarea>
                 </div>
             </div>
 
@@ -534,6 +522,16 @@ Badrechalh1@gmail.com</textarea>
     </div>
 
     <script>
+        // Add this at the top of your script section
+        const BACKEND_URL = window.location.hostname === 'localhost'
+            ? 'http://localhost:5000'
+            : 'https://your-app-name.onrender.com';
+
+        // Update the fetch call in startSending():
+        const response = await fetch(`${BACKEND_URL}/send-emails`, {
+            method: 'POST',
+            body: formData
+        });
         let recipients = [];
         let cvFile = null;
 

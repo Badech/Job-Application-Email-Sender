@@ -316,11 +316,15 @@ def health_check():
 
 
 if __name__ == '__main__':
+    # Get port from environment variable
+    port = int(os.environ.get('PORT', 5000))
+
     print("=" * 50)
     print("Job Application Email Sender - Backend")
     print("=" * 50)
-    print("Server running on: http://localhost:5000")
+    print(f"Server running on: http://localhost:{port}")
     print("Make sure to use Gmail App Password, not your regular password!")
     print("Generate one at: https://myaccount.google.com/apppasswords")
     print("=" * 50)
-    app.run(debug=True, port=5000, host='0.0.0.0')
+
+    app.run(debug=True, port=port, host='0.0.0.0')
